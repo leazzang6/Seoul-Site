@@ -7,10 +7,11 @@ in Seoul during a traveler's stay.
 
 ## Stack
 
-- [Next.js 16](https://nextjs.org/) (App Router, TypeScript)
+- [Next.js 16](https://nextjs.org/) (App Router, TypeScript), built as a
+  fully static export (`output: 'export'`) — no server required
 - [Tailwind CSS v4](https://tailwindcss.com/)
-- Custom locale routing (`/en`, `/ko`) via `src/proxy.ts`, English as the
-  default/primary locale
+- Custom locale routing (`/en`, `/ko`), English as the default/primary
+  locale; `/` and any unknown path client-redirect to `/en`
 - Static sample event data (`src/data`) — no backend/database yet
 
 ## Features
@@ -30,9 +31,24 @@ in Seoul during a traveler's stay.
 ```bash
 npm install
 npm run dev      # http://localhost:3000 (redirects to /en)
-npm run build
+npm run build     # static export written to ./out
 npm run lint
 ```
+
+## Deploying to GitHub Pages
+
+`.github/workflows/deploy-pages.yml` builds the static export and publishes
+it to GitHub Pages on every push to `main` (or via manual dispatch). One-time
+setup in the GitHub UI:
+
+1. Go to the repo's **Settings → Pages**.
+2. Under **Build and deployment → Source**, choose **GitHub Actions**.
+3. Push to `main` (or re-run the workflow) — the site will be published at
+   `https://<owner>.github.io/Seoul-Site/`.
+
+`next.config.ts` hardcodes `basePath`/`assetPrefix` as `/Seoul-Site` to match
+that project-page URL; update it if the repo is ever renamed or moved to a
+custom domain.
 
 ## Notes / next steps
 

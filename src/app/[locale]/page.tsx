@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { AdSlot } from "@/components/AdSlot";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { HomeExperience } from "@/components/HomeExperience";
+import { SetHtmlLang } from "@/components/SetHtmlLang";
 
 export default async function HomePage({
   params,
@@ -19,6 +20,7 @@ export default async function HomePage({
 
   return (
     <>
+      <SetHtmlLang locale={locale} />
       <Header locale={locale} dict={dict} />
 
       <main className="flex-1">
